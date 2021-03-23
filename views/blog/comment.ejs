@@ -1,0 +1,143 @@
+<%- include('../include/header.ejs') %>
+<%- include('../include/navHeader.ejs') %>
+
+
+<div id="section-landing">
+    <div class="wrapper-landing-blog">
+        <div class="blogDiv" >
+            <div class="blog">
+                <p class="title"><%= blog.title %></p>
+                <p class="text"><%= blog.text  %></p>
+                <p class="date"><%= moment(blog.date).format('MMM DD YYYY'); %> </p>
+            </div>
+        </div>
+            <% if(blog.author !== user){ %> 
+            <div class="newComment">
+                    <div class="userInfo">
+                        <p><%= user %> </p>
+                    </div>
+                    <div class="addComment">
+                        <form id="newCommentForm" action="" method="POST">
+                        <div class="userName"><input type="text" name='comment' placeholder="Type Your Comment..." onfocus="this.placeholder = ''" onfocusout="this.placeholder = 'Type Your Comment...'"></div>
+                        <div class="theNewComment"><button type="submit">Replay</button></div>
+                        </form>
+                    </div>
+            </div>
+            <% } %> 
+            <div class="scrollingPanel">
+                <% for(var i = 0; i < blog.comments.length; i++){ %>
+                    <div class="comments">
+                        <div class="userInfo">
+                            <div class="userName" hidden><%= blog.comments[i].user.userName%></div>
+                        </div>
+                        <div class="commentsInfo">
+                            <div class="userName"><p><%= blog.comments[i].user.userName %></p></div>
+                            <div class="userComment"><p><%= blog.comments[i].comment %> </p></div>
+                            <% if(blog.author !== user){ %> 
+                                <div class="commentOpr">
+                                    <button id="deleteComment"  data-doc="<%= blog._id %>" data-comment="<%= blog.comments[i]._id %>">&#128465</button>
+                                    <button id="editComment" data-doc="<%= blog._id %>" data-comment="<%= blog.comments.indexOf(blog.comments[i]) %>">&#x270E</button>
+                                </div>
+                            <% } %> 
+                        </div>
+                    </div>
+                <% } %>  
+        </div>
+    </div>
+</div>
+<div class="popUp" id="popUpBack">
+    <div class="contPopUp">
+        <p class="closeBtn">&#10006;</p>
+        <h2>Edit</h2>
+        <div class="popupEdit" id="popUpSmall">
+            <form action="edit" method="post">
+                <div>
+                <input name="commentId" class="blogId" value="" hidden>
+                <!-- <input type="text" class="inputTitle" name="title" id="title" placeholder="Title" required> -->
+                </div>
+                <div>
+                <textarea type="text" name="comment" class="textBlog" id="blog" rows="5" cols="60" maxlength="120" required></textarea>
+                </div>
+                <button type="submit">Edit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    const divScroll = document.querySelector('div.scrollingPanel');
+    const len = <%=blog.comments.length%>;
+
+    if(len > 3){
+        $(divScroll).hover(onHover,outHover);
+    }
+
+    function onHover(){
+        $(this).css('overflow-y', 'scroll');
+    };
+
+    function outHover(){
+        $(this).css('overflow-y', 'hidden');
+    }
+</script>
+
+<script>
+    const blogDiv = document.querySelectorAll('div.comments');
+
+    blogDiv.forEach(dv => dv.onmouseover = function (){
+        // $(dv).find('#edit').css('position', 'relative');
+        // $(dv).find('#delete').css('position', 'relative');
+        // $(dv).find('#edit').css('display', 'inline');
+        // $(dv).find('#delete').css('display', 'inline');
+        // $(dv).find('#deleteComment').css('display', 'inline');
+        // $(dv).find('#editComment').css('display', 'inline');
+        $(dv).find('div.commentOpr').css('display', 'inline');
+    });
+
+    blogDiv.forEach(dv => dv.onmouseout = function (){
+        // $(dv).find('#edit').css('display', 'none');
+        // $(dv).find('#delete').css('display', 'none');
+        // $(dv).find('#deleteComment').css('display', 'none');
+        // $(dv).find('#editComment').css('display', 'none');
+        $(dv).find('div.commentOpr').css('display', 'none');
+    });
+</script>
+
+<script>
+    const delBtn = document.querySelectorAll('button#deleteComment');
+
+    delBtn.forEach(btn => btn.onclick = async function (){
+        let endPoint = `/blogs/${btn.dataset.doc}/info/${btn.dataset.comment}`;
+
+        fetch(endPoint, {method: 'DELETE'})
+            .then(console.log('Doing'))
+            .catch(err=> console.log('ERROR DELETE'))
+        ;
+        location.reload();
+        location.reload();
+    });
+</script>
+
+<script>
+    var edit = document.querySelectorAll('button#editComment');
+    const popUp = document.getElementById('popUpBack');
+    // const inputTitle = document.querySelector('.inputTitle')
+    const textBlog = document.querySelector('.textBlog');
+
+    edit.forEach(btn => btn.onclick = function (){
+        var commentToEdit = <%- JSON.stringify(blog.comments) %>
+        commentToEdit = commentToEdit[btn.dataset.comment];
+        alert(commentToEdit._id);
+        alert(commentToEdit.comment);
+        // inputTitle.value = comment[btn.dataset.comment].title;
+        textBlog.value = commentToEdit.comment;
+        document.querySelector('.blogId').value = commentToEdit._id;
+        popUp.style.display = 'flex';
+    });
+
+    document.querySelector(".closeBtn").addEventListener('click', (e)=>{
+        popUp.style.display = 'none';
+    });
+</script>
+
+<%- include('../include/footer.ejs') %>

@@ -1,0 +1,89 @@
+<%- include('./include/header.ejs') %>
+<%- include('./include/navHeader.ejs') %>
+<div id="section-landing">
+
+    
+    <div class="wrapper-landing-blog">
+        <% if(blogs) { %>
+            <% if(blogs.length > 0){ %>
+                <% for(blog of blogs[index]){ %> 
+                <% if(blog === undefined) break; %> 
+                    <div class="blogDiv" >
+                        <div class="blog" data-doc="<%= blogs.indexOf(blog) %>">
+                            <p class="title"><%= blog.title %><span id="author">|By <%= blog.author %></span></p>
+                            <p class="text"><%= blog.text  %></p>
+                            <p class="date"><%= moment(blog.date).format('MMM DD YYYY'); %> </p>
+                        </div>
+                        <a class="com" href="blogs/<%= blog._id %>/info">
+                            <p class="comment">more...</p>
+                        </a>
+                    </div>
+                <% } %>  
+                <div class="navNextBack">
+                    <button class="back">&#8249;</button>
+                    <button class="next">&#8250;</button>
+                </div>
+            <% } else {%>  
+                <h1 id="printUser">error</h1> 
+            <% } %>
+        <% } else {%>  
+            <h1 id="printUser">No Blogs yet</h1> 
+        <% } %>
+    </div>
+    <!-- <div class="opsBtn"> 
+        <a href="blogs/add"><button class="opBtn">&#x271A</button></a>
+        <a href="blogs/delete"><button class="opBtn">&#128465</button></a>
+        <a href="blogs/edit"><button class="opBtn">&#x270E</button></a>
+    </div> -->
+</div>
+<div class="popUp" id="popUpBack">
+    <div class="contPopUp">
+        <p class="closeBtn">&#10006;</p>
+        <h2>Edit</h2>
+        <div class="popupEdit" id="popUpSmall">
+            <form action="" method="post">
+                <div>
+                <input name="blogId" class="blogId" value="" hidden>
+                <input type="text" class="inputTitle" name="title" id="title" placeholder="Title" required>
+                </div>
+                <div>
+                <textarea type="text" name="blog" class="textBlog" id="blog" rows="5" cols="60" maxlength="120" required></textarea>
+                </div>
+                <button type="submit">Edit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    const back = document.querySelector('button.back');
+    const next = document.querySelector('button.next');
+    if(<%= index %> > 0){
+        back.style.display = 'inline';
+    }else{
+        back.style.display = 'none';
+    }
+
+    if(<%= index %> >= <%= blogs.length-1 %>){
+        next.style.display = 'none';
+    }
+
+    next.addEventListener('click', (e)=>{
+        <%= index += 2 %>
+        window.location.href = `?page=<%=index%>`;
+    });
+
+    back.addEventListener('click', (e)=>{
+        <%= index -=2 %>
+        window.location.href = `?page=<%=index%>`;
+    });
+</script>
+</div>
+
+<%-  include('./include/footer.ejs')%> 
+
+
+
+
+

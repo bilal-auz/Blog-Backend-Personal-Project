@@ -1,0 +1,44 @@
+<%- include('../include/header.ejs') %>
+
+<div id="section-landing">
+    <%- include('../include/navHeader.ejs') %>
+    <div class="wrapper-landing-blog">
+        <% if(blogs){ %>
+            <% if(blogs.length > 0){ %>
+                <form action="" method="POST">
+                <div class="blogDiv">
+                    <div class="newBlog">
+                        <p class="title"><input autofocus type="text" name="title" placeholder="New Title..." minlength="3" required></p>
+                        <p class="text"><textarea name="blog" cols="80" rows="3" placeholder="New Blog . . ." minlength="5"></textarea></p>
+                        <p class="date"><%= moment().format('MMM DD YYYY'); %></p>
+                    </div>
+                    <button class='add'>add</button>
+                </div>
+                </form>
+                <button class="cancel">cancel</button>
+                <% let loops = 0; %> 
+                <% for(blog of blogs[index]){ %>
+                    <% if(blog === undefined) break; %>
+                    <div class="blog">
+                        <p class="title"><%= blog.title %></p>
+                        <p class="text"><%= blog.text  %></p>
+                        <p class="date"><%= moment(blog.date).format('MMM DD YYYY'); %> </p>  
+                    </div>
+                    <% loops++; %> 
+                    <% if(loops >= 2) break; %> 
+                <% } %>
+            <% }%>
+        <% } else {%>  
+            <h1 id="printUser">No Blogs yet</h1> 
+        <% } %>
+    </div>
+</div>
+<script>
+    const cancelBtn = document.querySelector('button.cancel');
+
+    cancelBtn.addEventListener('click', (e)=>{
+        window.location.replace('/blogs');
+    });
+
+</script>
+<%-  include('../include/footer.ejs')%> 

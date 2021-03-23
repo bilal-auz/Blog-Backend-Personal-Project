@@ -1,0 +1,18 @@
+<%- include('./include/header.ejs') %>
+
+<%- include('./include/navHeader.ejs')%>
+
+<div id="section-landing">
+<div class="container-login">
+    <div class="wrapper-login">
+        <h1>Login</h1>
+        <p class="options">If you don't have an account <a href="./register">REGISTER NOW</a> .</p>
+        <form id="login-form" action="" method="POST">
+            <input type="text" placeholder="Email" name="email" required>
+            <input type="password" placeholder="Password" name="password" required>
+            <button id="submit" type="submit" value="submit">Login</button>
+        </form>
+    </div>
+</div>
+</div>
+<%-  include('./include/footer.ejs')%> 

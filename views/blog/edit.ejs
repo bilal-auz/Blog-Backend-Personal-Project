@@ -1,0 +1,89 @@
+<%- include('../include/header.ejs') %>
+
+<div id="section-landing">
+    <%- include('../include/navHeader.ejs') %>
+    <div class="wrapper-landing-blog"  id="blogsS">
+        <% if(user.blogs){ %> 
+            <% if(user.blogs.length > 0){ %>
+                    <% for(blog of user.blogs[index]){ %> 
+                        <% if(blog === undefined) break; %>
+                        <div class="blogDiv">
+                            <div class="blog">
+                                <p class="title"><%= blog.title %></p>
+                                <p class="text"><%= blog.text  %></p>
+                                <p class="date"><%= moment(blog.date).format('MMM DD YYYY'); %> </p>
+                            </div>
+                            <button class='edit' data-doc="<%= user.blogs[index].indexOf(blog) %>">Edit</button>
+                        </div>
+                    <% } %>
+                    <div class="navNextBack">
+                        <button class="back">&#8249;</button>
+                        <button class="next">&#8250;</button>
+                    </div>
+                <% } else {%>  
+                    <h1 id="printUser">No Blogs to Edit</h1> 
+                <% } %>
+        <% } %>
+    </div>
+    
+    <div class="popUp" id="popUpBack">
+        <div class="popupEdit" id="popUpSmall">
+            <p class="closeBtn">&#10006;</p>
+            <form action="" method="post">
+                <div>
+                <input name="blogIndex" class="id" value="" hidden>
+                <label for="title"> Title</label>
+                <input type="text" class="inputTitle" name="title" id="title" value="55" required>
+                </div>
+                <div>
+                <label for="blog">Blog</label>
+                <textarea type="text" name="blog" class="textBlog" id="blog" rows="5" cols="80" maxlength="120" required></textarea>
+                </div>
+                <button type="submit">Edit</button>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    var edit = document.querySelectorAll('button.edit');
+    const popUp = document.getElementById('popUpBack');
+    const inputTitle = document.querySelector('.inputTitle')
+    const textBlog = document.querySelector('.textBlog');
+
+    edit.forEach(btn => btn.onclick = function (){
+        const blogs = <%- JSON.stringify(user.blogs[index])%>;
+        inputTitle.value = blogs[btn.dataset.doc].title;
+        textBlog.value = blogs[btn.dataset.doc].text;
+        document.querySelector('.id').value = btn.dataset.doc;
+        popUp.style.display = 'flex';
+    });
+
+    document.querySelector(".closeBtn").addEventListener('click', (e)=>{
+        popUp.style.display = 'none';
+    })
+</script>
+<script>
+    const back = document.querySelector('button.back');
+    const next = document.querySelector('button.next');
+    if(<%= index %> > 0){
+        back.style.display = 'inline';
+    }else{
+        back.style.display = 'none';
+    }
+
+    if(<%= index %> >= <%= user.blogs.length-1 %>){
+        next.style.display = 'none';
+    }
+
+    next.addEventListener('click', (e)=>{
+        <%= index += 2 %>
+        window.location.href = `/blogs/edit?page=<%=index%>`;
+    });
+
+    back.addEventListener('click', (e)=>{
+        <%= index -=2 %>
+        window.location.href = `/blogs/edit?page=<%=index%>`;
+    });
+</script>
+
+<%-  include('../include/footer.ejs')%> 

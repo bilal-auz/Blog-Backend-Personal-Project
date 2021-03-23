@@ -1,0 +1,133 @@
+<%- include('../include/header.ejs') %>
+<%- include('../include/navHeader.ejs') %>
+
+<div id="section-landing">
+    
+    <div class="wrapper-landing-blog">
+        <% if(blogs) { %>
+            <% if(blogs.length > 0){ %>
+                <% for(blog of blogs[index]){ %> 
+                    <% if(blog === undefined) break; %> 
+                    <div class="blogDiv" >
+                        <div class="blog" data-doc="<%= blogs.indexOf(blog) %>">
+                            <p class="title"><%= blog.title %></p>
+                            <p class="text"><%= blog.text  %></p>
+                            <p class="date"><%= moment(blog.date).format('MMM DD YYYY'); %> </p>
+                        </div>
+                        <button id="delete" class='delete' data-doc="<%= blog._id %>">&#128465</button>
+                        <button id="edit" class='edit' data-doc="<%= blogs[index].indexOf(blog) %>">&#x270E</button>
+                        <a class="com" href="blogs/<%= blog._id %>/info">
+                            <p class="comment">more...</p>
+                        </a>
+                    </div>
+                <% } %>  
+                <div class="navNextBack">
+                    <button class="back">&#8249;</button>
+                    <button class="next">&#8250;</button>
+                </div>
+            <% } else {%>  
+                <h1 id="printUser">error</h1> 
+            <% } %>
+        <% } else {%>  
+            <h1 id="printUser">No Blogs yet</h1> 
+        <% } %>
+    </div>
+    <div class="opsBtn"> 
+        <a href="blogs/add"><button class="opBtn">&#x271A</button></a>
+    </div>
+</div>
+<div class="popUp" id="popUpBack">
+    <div class="contPopUp">
+        <p class="closeBtn">&#10006;</p>
+        <h2>Edit</h2>
+        <div class="popupEdit" id="popUpSmall">
+            <form action="" method="post">
+                <div>
+                <input name="blogId" class="blogId" value="" hidden>
+                <input type="text" class="inputTitle" name="title" id="title" placeholder="Title" required>
+                </div>
+                <div>
+                <textarea type="text" name="blog" class="textBlog" id="blog" rows="5" cols="60" maxlength="120" required></textarea>
+                </div>
+                <button type="submit">Edit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- next back buttons -->
+<script>
+    const back = document.querySelector('button.back');
+    const next = document.querySelector('button.next');
+    if(<%= index %> > 0){
+        back.style.display = 'inline';
+    }else{
+        back.style.display = 'none';
+    }
+
+    if(<%= index %> >= <%= blogs.length-1 %>){
+        next.style.display = 'none';
+    }
+
+    next.addEventListener('click', (e)=>{
+        <%= index += 2 %>
+        window.location.href = `?page=<%=index%>`;
+    });
+
+    back.addEventListener('click', (e)=>{
+        <%= index -=2 %>
+        window.location.href = `?page=<%=index%>`;
+    });
+</script>
+
+<!-- edit blog popup -->
+<script>
+    var edit = document.querySelectorAll('button.edit');
+    const popUp = document.getElementById('popUpBack');
+    const inputTitle = document.querySelector('.inputTitle')
+    const textBlog = document.querySelector('.textBlog');
+
+    edit.forEach(btn => btn.onclick = function (){
+        const blogs = <%- JSON.stringify(blogs[index])%>;
+        inputTitle.value = blogs[btn.dataset.doc].title;
+        textBlog.value = blogs[btn.dataset.doc].text;
+        document.querySelector('.blogId').value = blogs[btn.dataset.doc]._id;
+        popUp.style.display = 'flex';
+    });
+
+    document.querySelector(".closeBtn").addEventListener('click', (e)=>{
+        popUp.style.display = 'none';
+    });
+</script>
+
+<!-- showing edit/delete buttons for every blog -->
+<script>
+    const blogDiv = document.querySelectorAll('div.blogDiv');
+
+    blogDiv.forEach(dv => dv.onmouseover = function (){
+        $(dv).find('#edit').css('display', 'inline');
+        $(dv).find('#delete').css('display', 'inline');
+    });
+
+    blogDiv.forEach(dv => dv.onmouseout = function (){
+        $(dv).find('#edit').css('display', 'none');
+        $(dv).find('#delete').css('display', 'none');
+    });
+</script>
+
+<!-- delete blog -->
+<script>
+    const delBtn = document.querySelectorAll('button.delete');
+
+    delBtn.forEach(btn => btn.onclick = function (){
+        let endPoint = `/blogs/delete/${btn.dataset.doc}`;
+        
+        fetch(endPoint, {method: 'DELETE'})
+            .then(window.location.replace('/blogs'))
+            .catch(err=>{console.log('ERROR DELETE')})
+        ;
+    });
+    
+</script>
+
+<%-  include('../include/footer.ejs')%> 

@@ -1,0 +1,34 @@
+
+<nav class="top-nav">
+    <ul id="title">
+        <li>
+            <a href="/home">BLOG</a>
+            <span id="userName">
+            <% if(pass){ %> 
+                |<%= user %>
+            <% }else{ %> 
+                welcome
+            <% } %> 
+            </span>
+        </li>
+    </ul>
+    <ul>
+        <li><a href="/home">Home</a></li>
+        <li><a href="/Search">Search</a></li>
+        <% if(pass){ %>
+            <li><a href="/blogs">My Blogs</a></li>
+        <% } %>
+        <% if(pass){ %> 
+            <li class="btn-login">
+                <a href="/logout">Logout</a>
+            </li>
+        <% }else{ %> 
+            <li class="btn-login">
+                <a href="/login">Login</a>
+            </li>
+            <li class="btn-login">
+                <a href="/register">Register</a>
+            </li>
+        <% } %> 
+    </ul>
+</nav>
