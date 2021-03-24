@@ -1,0 +1,6 @@
+{
+    "name" : "Blog",
+    "db" : "mongodb://localhost/TheBlog",
+    "host" : "localhost",
+    "port" : 5050
+}
