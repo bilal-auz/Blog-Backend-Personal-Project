@@ -1,20 +1,43 @@
 <%- include('./include/header.ejs') %>
-
 <%- include('./include/navHeader.ejs')%>
-
-<div id="section-landing">
-<div class="container-login">
-    <div class="wrapper-login">
-        <h1>Register</h1>
-        <p class="options">If you have an account <a href="./login">LOGIN NOW</a>.</p>
-        <form id="register-form" action="" method="POST">
-            <input type="text" name="userName" placeholder="USER NAME" required>
-            <input type="text" placeholder="Email" name="email" required>
-            <input type="password" name="password" placeholder="Password" required >
-            <input type="password" name="confPassword" placeholder="Confirm Password" required>
-            <button id="submit" type="submit" value="submit">Register</button>
-        </form>
-    </div> 
-</div>
+<div class="section-landing--form">
+    <div class="container-login">
+        <div class="wrapper-login">
+            <div class="form__header">
+                <p id="form__header--welcome">Weclome</p>
+                <p id="form__header--title">Register To BLOG</p>
+                <a href="/login">
+                    <p id="login-resgisterNow">
+                        OR <span>LOGIN&nbsp;Now!</span>
+                    </p>
+                </a>
+            </div>
+            <form class="login-register--form" id="register-form" action="" method="POST">
+                <div class="login-form__divs">
+                    <label>Username</label>
+                    <input type="text" name="userName" placeholder="USER NAME" required>
+                </div>
+                <div class="login-form__divs">
+                    <label>E-mail</label>
+                    <input type="text" placeholder="Email" name="email" required>
+                </div>
+                <div class="login-form__divs">
+                    <label>Password</label>
+                    <input id="Pass" type="password" name="password" placeholder="Password" required >
+                </div>
+                <div class="login-form__divs confPassDiv">
+                    <label>Confirm Password</label>
+                    <input id="confPass" type="password" name="confPassword" placeholder="Confirm Password" required>
+                </div>
+                <div class="login-form__passwordOpr">
+                    <div>
+                        <input type="checkbox" id="showPass" onclick="showHidePass()">
+                        <label for="showPass">Show&nbsp;Password</label>
+                    </div>
+                    <button id="submit" type="submit" value="submit">Register</button>
+                </div>
+            </form>
+        </div> 
+    </div>
 </div>
 <%-  include('./include/footer.ejs')%>

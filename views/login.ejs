@@ -1,18 +1,36 @@
 <%- include('./include/header.ejs') %>
-
 <%- include('./include/navHeader.ejs')%>
-
-<div id="section-landing">
-<div class="container-login">
-    <div class="wrapper-login">
-        <h1>Login</h1>
-        <p class="options">If you don't have an account <a href="./register">REGISTER NOW</a> .</p>
-        <form id="login-form" action="" method="POST">
-            <input type="text" placeholder="Email" name="email" required>
-            <input type="password" placeholder="Password" name="password" required>
-            <button id="submit" type="submit" value="submit">Login</button>
-        </form>
+<div class="section-landing--form">
+    <div class="container-login">
+        <div class="wrapper-login">
+            <div class="form__header">
+                <p id="form__header--welcome">Weclome</p>
+                <p id="form__header--title">Login In to BLOG</p>
+                <a href="/register">
+                <p id="login-resgisterNow">
+                    NEW? <span>Register&nbsp;Now!</span>
+                </p>
+                </a>
+            </div>
+            <form class="login-register--form"      id="login-form" action="" method="POST">
+                <div class="login-form__divs">
+                    <label for="Email">E-mail</label>
+                    <input id="Email" type="text" name="email" required>
+                </div>
+                <div class="login-form__divs">
+                    <label for="Pass">Password</label>
+                    <input id="Pass" type="password" name="password" required>
+                </div>
+                <div class="login-form__passwordOpr">
+                    <input type="checkbox" id="showPass" onclick="showHidePass()">
+                    <label for="showPass">Show Password</label>
+                    <a href="#">forget Password?</a>
+                </div>
+                <div class="login-form__button">
+                    <button id="submit" type="submit" value="submit">Login</button>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 </div>
 <%-  include('./include/footer.ejs')%> 

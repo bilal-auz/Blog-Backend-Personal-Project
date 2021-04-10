@@ -1,35 +1,43 @@
 <%- include('./include/header.ejs') %>
 <%- include('./include/navHeader.ejs') %>
 <div id="section-landing">
-
-    
-    <div class="wrapper-landing-blog">
+    <!-- <div class="wrapper-landing-blog"> -->
+    <!-- <div> -->
         <% if(blogs) { %>
             <% if(blogs.length > 0){ %>
                 <% for(blog of blogs[index]){ %> 
-                <% if(blog === undefined) break; %> 
-                    <div class="blogDiv" >
-                        <div class="blog" data-doc="<%= blogs.indexOf(blog) %>">
-                            <p class="title"><%= blog.title %><span id="author">|By <%= blog.author %></span></p>
-                            <p class="text"><%= blog.text  %></p>
-                            <p class="date"><%= moment(blog.date).format('MMM DD YYYY'); %> </p>
+                    <% if(blog === undefined) break; %> 
+                    <div class="wrapper-landing-blog" data-sal="zoom-in" data-sal-delay="50">
+                        <div id="author">
+                            <p class="author__name"><%= blog.author %></p>
                         </div>
-                        <a class="com" href="blogs/<%= blog._id %>/info">
-                            <p class="comment">more...</p>
-                        </a>
-                    </div>
+                        <div class="blogDiv" >
+                            <div class="blog" data-doc="<%= blogs.indexOf(blog) %>">
+                                <h2 class="title"><%= blog.title %></h2>
+                                <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi eligendi, nihil quos laboriosam unde sit eius maiores veniam dicta corrupti quam mollitia totam quod alias, pariatur atque deleniti maxime hic?<%= blog.text  %></p>
+                                <p class="date">
+                                    <span class="calendar">&#128197;&#xfe0e;</span>	
+                                    <%= moment(blog.date).format('MMM DD YYYY');%> 
+                                </p>
+                            </div>
+                            <a class="com" href="blogs/<%= blog._id %>/info">
+                                <p class="comment">more...</p>
+                            </a>
+                        </div>
+                    </div>  
                 <% } %>  
-                <div class="navNextBack">
+            </div>
+                <!-- <div class="navNextBack">
                     <button class="back">&#8249;</button>
                     <button class="next">&#8250;</button>
-                </div>
+                </div> -->
             <% } else {%>  
                 <h1 id="printUser">error</h1> 
             <% } %>
         <% } else {%>  
             <h1 id="printUser">No Blogs yet</h1> 
         <% } %>
-    </div>
+    <!-- </div> -->
     <!-- <div class="opsBtn"> 
         <a href="blogs/add"><button class="opBtn">&#x271A</button></a>
         <a href="blogs/delete"><button class="opBtn">&#128465</button></a>
@@ -56,7 +64,7 @@
 </div>
 
 
-<script>
+<!-- <script>
     const back = document.querySelector('button.back');
     const next = document.querySelector('button.next');
     if(<%= index %> > 0){
@@ -78,7 +86,7 @@
         <%= index -=2 %>
         window.location.href = `?page=<%=index%>`;
     });
-</script>
+</script> -->
 </div>
 
 <%-  include('./include/footer.ejs')%> 

@@ -1,84 +1,72 @@
 <%- include('../include/header.ejs') %>
 <%- include('../include/navHeader.ejs') %>
-
 <div id="section-landing">
-    
-    <div class="wrapper-landing-blog">
-        <% if(blogs) { %>
-            <% if(blogs.length > 0){ %>
-                <% for(blog of blogs[index]){ %> 
-                    <% if(blog === undefined) break; %> 
-                    <div class="blogDiv" >
+    <% if(blogs) { %>
+        <% if(blogs.length > 0){ %>
+            <% for(blog of blogs[index]){ %> 
+                <% if(blog === undefined) break; %> 
+                <div class="wrapper-landing-blog">
+                    <div id="author">
+                        <p class="author__name"><%= blog.author %></p>
+                    </div>
+                    <div class="blogDiv">
                         <div class="blog" data-doc="<%= blogs.indexOf(blog) %>">
                             <p class="title"><%= blog.title %></p>
-                            <p class="text"><%= blog.text  %></p>
-                            <p class="date"><%= moment(blog.date).format('MMM DD YYYY'); %> </p>
+                            <p class="text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates neque repellendus non esse illo culpa aperiam numquam ullam quae laboriosam assumenda iste modi nihil labore sit laborum enim, ipsum dicta.<%= blog.text  %></p>
+                            <p class="date">
+                                <span class="calendar">&#128197;&#xfe0e;</span>
+                                <%= moment(blog.date).format('MMM DD YYYY'); %>
+                            </p>
                         </div>
-                        <button id="delete" class='delete' data-doc="<%= blog._id %>">&#128465</button>
-                        <button id="edit" class='edit' data-doc="<%= blogs[index].indexOf(blog) %>">&#x270E</button>
+                        <div class="Blog__DeleteAdd">
+                            <button id="delete" class='delete' data-doc="<%= blog._id %>">
+                                <span>&#128465</span>
+                            </button>
+                            <button id="edit" class='edit' data-doc="<%= blogs[index].indexOf(blog) %>">
+                                <span>&#x270E</span>
+                            </button>
+                        </div>
                         <a class="com" href="blogs/<%= blog._id %>/info">
                             <p class="comment">more...</p>
                         </a>
                     </div>
-                <% } %>  
-                <div class="navNextBack">
-                    <button class="back">&#8249;</button>
-                    <button class="next">&#8250;</button>
-                </div>
-            <% } else {%>  
-                <h1 id="printUser">error</h1> 
-            <% } %>
+                </div>  
+            <% } %>  
         <% } else {%>  
-            <h1 id="printUser">No Blogs yet</h1> 
+            <h1 id="printUser">error</h1> 
         <% } %>
-    </div>
-    <div class="opsBtn"> 
-        <a href="blogs/add"><button class="opBtn">&#x271A</button></a>
-    </div>
+    <% } else {%>  
+        <h1 id="printUser">No Blogs yet</h1> 
+    <% } %>
 </div>
+<div class="newBlogBtn"> 
+    <a href="blogs/add"><span>&#x271A</span></a>
+</div>
+
 <div class="popUp" id="popUpBack">
-    <div class="contPopUp">
+    <div class="wrapper-landing-blog">
         <p class="closeBtn">&#10006;</p>
-        <h2>Edit</h2>
-        <div class="popupEdit" id="popUpSmall">
-            <form action="" method="post">
-                <div>
-                <input name="blogId" class="blogId" value="" hidden>
-                <input type="text" class="inputTitle" name="title" id="title" placeholder="Title" required>
-                </div>
-                <div>
-                <textarea type="text" name="blog" class="textBlog" id="blog" rows="5" cols="60" maxlength="120" required></textarea>
-                </div>
-                <button type="submit">Edit</button>
-            </form>
+        <div id="author">
+            <p class="author__name"><%= user %></p>
         </div>
+        <form id="newBlog" action="" method="post">
+            <div class="blogDiv">
+                <div class="blog">
+                    <input name="blogId" class="blogId" value="" hidden>
+                    <input type="text" class="inputTitle" name="title" id="title" placeholder="Title" required>
+                    <textarea type="text" name="blog" class="textBlog" id="blog" rows="5" cols="60" maxlength="120" required></textarea>
+                    <p class="date">
+                        <span class="calendar">&#128197;&#xfe0e;</span>
+                        <%= moment().format('MMM DD YYYY'); %>
+                    </p>
+                </div>
+                <div class="newBlog--addCancel">
+                    <button type="submit">Edit</button>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
-
-<!-- next back buttons -->
-<script>
-    const back = document.querySelector('button.back');
-    const next = document.querySelector('button.next');
-    if(<%= index %> > 0){
-        back.style.display = 'inline';
-    }else{
-        back.style.display = 'none';
-    }
-
-    if(<%= index %> >= <%= blogs.length-1 %>){
-        next.style.display = 'none';
-    }
-
-    next.addEventListener('click', (e)=>{
-        <%= index += 2 %>
-        window.location.href = `?page=<%=index%>`;
-    });
-
-    back.addEventListener('click', (e)=>{
-        <%= index -=2 %>
-        window.location.href = `?page=<%=index%>`;
-    });
-</script>
 
 <!-- edit blog popup -->
 <script>
@@ -86,22 +74,25 @@
     const popUp = document.getElementById('popUpBack');
     const inputTitle = document.querySelector('.inputTitle')
     const textBlog = document.querySelector('.textBlog');
+    const blogId = document.querySelector('.blogId');
 
     edit.forEach(btn => btn.onclick = function (){
         const blogs = <%- JSON.stringify(blogs[index])%>;
+        blogId.value = blogs[btn.dataset.doc]._id;
+        alert(blogId.value);
         inputTitle.value = blogs[btn.dataset.doc].title;
         textBlog.value = blogs[btn.dataset.doc].text;
-        document.querySelector('.blogId').value = blogs[btn.dataset.doc]._id;
-        popUp.style.display = 'flex';
+        $('#popUpBack').fadeIn(800);
+        // popUp.style.display = 'flex';
     });
 
     document.querySelector(".closeBtn").addEventListener('click', (e)=>{
-        popUp.style.display = 'none';
+        $('#popUpBack').fadeOut(800);
     });
 </script>
 
 <!-- showing edit/delete buttons for every blog -->
-<script>
+<!-- <script>
     const blogDiv = document.querySelectorAll('div.blogDiv');
 
     blogDiv.forEach(dv => dv.onmouseover = function (){
@@ -113,7 +104,7 @@
         $(dv).find('#edit').css('display', 'none');
         $(dv).find('#delete').css('display', 'none');
     });
-</script>
+</script> -->
 
 <!-- delete blog -->
 <script>

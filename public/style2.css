@@ -1,0 +1,667 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+@font-face {
+    font-family: blogTitle;
+    src: url(./BebasNeue-Regular.ttf);
+}
+html, body{
+    height: 100%;
+}
+body{
+    font-size: 62.5%;
+    /* background: url('/bg.jpg'); */
+    background-color: #122847;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='35 0 80 80' width='200' height='80'%3E%3Cpath fill='%237a629f' fill-opacity='0.47' d='M14 16H9v-2h5V9.87a4 4 0 1 1 2 0V14h5v2h-5v15.95A10 10 0 0 0 23.66 27l-3.46-2 8.2-2.2-2.9 5a12 12 0 0 1-21 0l-2.89-5 8.2 2.2-3.47 2A10 10 0 0 0 14 31.95V16zm40 40h-5v-2h5v-4.13a4 4 0 1 1 2 0V54h5v2h-5v15.95A10 10 0 0 0 63.66 67l-3.47-2 8.2-2.2-2.88 5a12 12 0 0 1-21.02 0l-2.88-5 8.2 2.2-3.47 2A10 10 0 0 0 54 71.95V56zm-39 6a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm40-40a2 2 0 1 1 0-4 2 2 0 0 1 0 4zM15 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm40 40a2 2 0 1 0 0-4 2 2 0 0 0 0 4z'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    height: 100vh;
+    position: fixed;
+}
+a{
+    text-decoration: none;
+    color: white;
+    font-size: 2.2em;
+    font-weight: 500;
+}
+
+li{
+    display: flex;
+    padding: 0 3rem;
+}
+textarea{
+    resize: none;
+}
+/*header*/
+.top-nav{
+    box-shadow: inset 0 0 25px 1px rgba(255, 255, 255, 0.534);
+    /* background: rgba(255, 255, 255, 0.445); */
+    display: flex;
+    justify-content: space-between;
+    min-height: fit-content;
+    min-width: fit-content;
+    width: 100vw;
+    /* width: 100%;
+    height: 12vh; */
+    /* overflow: hidden; */
+}
+
+ul#title{
+    padding: 0;
+    margin: 0;
+    justify-items: center;
+}
+
+ul#title li, ul#title a{
+    /* border: 1px dotted green; */
+    font-weight: lighter;
+    font-size: 2.2em;
+
+}
+span#userName{
+    align-self: flex-end;
+    font-weight: bolder;
+    font-size: 1rem;
+    color: #fff;
+}
+
+
+ul.top-nav__list{
+    display: flex;
+    justify-content: space-between;
+    /* border: 1px dotted greenyellow; */
+    align-items: center;
+}
+
+.btn-login a{
+    border: 1px solid #fff;
+    padding: 0.1rem 1em;
+}
+
+/*********** Main ************/
+/* home */
+#section-landing{
+    margin: 1rem;
+    margin-bottom: 0;
+    /* border: 1px solid yellowgreen; */
+    /* background: tomato; */
+    height: 73%;
+    display: block;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+    scrollbar-color: rgb(87, 196, 177);
+}
+
+.wrapper-landing-blog{
+    /* display: block; */
+    position: relative;
+    overflow: hidden;
+    margin: 10%;
+    /* position: relative; */
+    /* bottom: 5%; */
+    width: 80%;
+    height: 60%;
+    /* background: chartreuse; */
+    /* border: 3px solid rgba(172, 255, 47, 0.1); */
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 80px rgba(0, 0, 0, 0.2);
+}
+
+.blogDiv{
+    /* background: crimson; */
+    /* border: 1px solid slateblue; */
+    margin: 2%;
+    height: 84%;
+    display: flex;
+}
+
+.blogDiv .blog{
+    /* background-color: khaki; */
+    /* border: 1px solid brown; */
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    width: 90%;
+}
+
+
+#author{
+    /* background: #122847; */
+    background: rgb(87, 196, 177);
+    position: absolute;
+    top: 0;
+    right: 0;
+    /* transform: rotateZ(35deg); */
+    transform: translateY(-100%) rotate(90deg) translateX(70.71067811865476%) rotate(
+        -45deg
+        );
+        transform-origin: bottom right;
+  /* box-shadow: 0 -1px 10px 10px #7a629f56; */
+  
+}
+.author__name{
+    letter-spacing: 1px;
+    /* color: #7a629f; */
+    color: #122847;
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.5rem;
+    padding: 0.2rem 1.5rem;
+    transition: ease 0.5s;
+  
+}
+
+.author__name:hover{
+    text-shadow: 0 0 2px #784eb3;
+    
+    box-shadow: 0 0 5px #462970, 0 0 5px #462970 inset;
+    /* color: #122847; */
+}
+
+.blog .title{
+    width: fit-content;
+    text-align: left;
+    color: rgb(87, 196, 177);
+    font-size: 5em;
+    font-weight: bolder;
+    grid-template-rows: 100px;
+    text-transform: uppercase;
+    letter-spacing: 5%;
+}
+
+
+.blog .text{
+    color: rgba(255, 255, 255, 0.8);
+    /* border: 1px solid gold; */
+    font-size: 1.5rem;
+    margin-top: 1.5rem;
+    align-content: center;
+    align-items: center;
+    overflow: hidden;
+    line-height: 1.5;
+}
+
+.blog .date{
+    padding: 1%;
+    color: rgba(255, 255, 255, 0.8);
+    align-self: flex-end;
+    font-size: 1.2rem;
+    /* background: red; */
+    border: 1px solid rgb(87, 196, 177);
+    width: fit-content;
+
+}
+
+.blog .calendar{
+    color: rgb(87, 196, 177);
+}
+
+.blogDiv .com{
+    align-self: flex-end;
+}
+
+.com .comment{
+    text-transform: uppercase;
+    color: rgb(87, 196, 177);
+    font-weight: 700;
+    font-size: 2rem;
+    transition: all 0.5s ease-out;
+
+}
+
+.com .comment:hover{
+    color: #122847;
+    transition: all 0.3s ease-in-out;
+}
+
+/* popup */
+.popUp{
+    display: none;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(0, 0, 0);
+    z-index: 5555;
+
+}
+.popUp .wrapper-landing-blog{
+    transition: all 0.5s ease-out 1s;
+}
+.popUp .wrapper-landing-blog:hover{
+    box-shadow: 0 0 50px rgb(87, 196, 177);
+    
+}
+.popUp .closeBtn{
+    display: inline-flex;
+    position: absolute;
+    right: 1.2%;
+    top: 1.5%;
+    /* background: chartreuse; */
+    color: rgb(87, 196, 177);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/*Login&Register*/
+.section-landing--form{
+    border: 1px solid springgreen;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-self: center;
+    height: 80%;
+    margin: 1rem;
+    overflow: hidden;
+}
+
+.container-login{
+    /* background: turquoise */
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 80px rgba(0, 0, 0, 0.2);
+    border-radius: 25px;
+    min-width: fit-content;
+    margin: 1%;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+}
+
+
+.wrapper-login{
+    /* background: tomato; */
+    position: relative;
+    /* width: 100%; */
+    height: 100%;
+    margin: 2rem;
+
+}
+
+.wrapper-login .form__header{
+    /* background: darkcyan; */
+    position: relative;
+    height: 4.5rem;
+}
+
+.form__header #form__header--welcome{
+    color: #0d223f;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+.form__header #form__header--title{
+    color: rgb(87, 196, 177);
+    font-size: 2rem;
+    font-weight: lighter;
+    margin: 1% auto;
+}
+
+#login-resgisterNow{
+    position: absolute;
+    background: rgba(87, 196, 178, 0.753);
+    box-shadow: 0 0 20px #0d223f;
+    font-size: 1.5rem;
+    color: #0d223f;
+    border-radius: 10px;
+    right: 1%;
+    top: 0.3rem;
+    width: 6rem;
+    padding: 1%;
+    text-align: center;
+    transition: all 0.5s ease-out;
+}
+#login-resgisterNow:hover{
+    background: #0d223f;
+    box-shadow: 0 0 20px rgba(87, 196, 178, 0.753);
+    color: rgba(87, 196, 178, 0.753);
+}
+p#login-resgisterNow span{
+    font-size: 0.9rem;
+}
+
+.login-register--form{
+    margin-top: 4%;
+    /* background: violet; */
+    height: fit-content;
+    padding: 10%;
+    padding-bottom: 0 ;
+    background: rgba(255, 254, 254, 0.027);
+    box-shadow: 0 0 20px rgb(0, 0, 0);
+    border-radius: 25px;
+}
+
+.login-register--form .login-form__divs{
+    margin-bottom: 1rem;
+    position: relative;
+}
+.login-register--form label{
+    font-size: 1.2rem;
+    display: block;
+    padding-left: 0.8rem;
+    color: #fff;
+    font-weight: 600;
+}
+.login-register--form input{
+    background: rgb(87, 196, 177);
+    color: #122847;
+    line-height: 2;
+    font-size: 1.2rem;
+    font-weight: bolder;
+    /* padding: 0 6rem 0 1rem; */
+    padding: 0.3rem 1rem;
+    width: 90%;
+    border: none;
+    border-radius: 5px;
+    outline: 0;
+    margin: 0 1%;
+    margin-top: 0.5rem;
+    position: relative;
+}
+.login-register--form .icon{
+    color: yellow;
+    position: absolute;
+    top: 5%;
+    z-index: 1;
+    
+}
+
+.login-form__passwordOpr{
+    /* background: blue; */
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 2rem;
+}
+.login-form__passwordOpr input[type=checkbox]{
+    width: unset;
+    margin-top: 0.5%;
+}
+.login-form__passwordOpr label{
+    padding-left: 3px;
+    font-size: 1rem;
+}
+
+.login-form__passwordOpr a{
+    color: #122847;
+    position: absolute;
+    right: 1rem;
+    font-size: 1.2rem;
+}
+.login-register--form .login-form__button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5rem;
+}
+.login-register--form button{
+    font-size: 1.5rem;
+    padding: 0.5rem 2rem;
+    border: none;
+    border-radius: 5px;
+    background: rgb(87, 196, 177);
+    color: #122847;
+    outline: 0;
+    transition: all 0.3s ease-out;
+}
+.login-register--form button:hover{
+    background: #122847;
+    color: rgb(87, 196, 177);
+    box-shadow: 0 0 20px #122847;
+    text-shadow: 0 0 5px rgb(87, 196, 177);
+}
+
+#register-form{
+    margin-top: 2%;
+    padding: 3% 12% 1% 12%;
+}
+#register-form label, 
+#register-form input{
+    font-size: 1rem;
+}
+#register-form input{
+    /* width: 80%; */
+}
+#register-form button{
+    font-size: 1.5rem;
+    align-self: flex-end;
+    padding: 2%;
+}
+#register-form .confPassDiv{
+    margin-bottom: 3%;
+}
+#register-form .login-form__passwordOpr{
+    position: relative;
+    justify-content: space-between;
+    padding: 0 10%;
+    margin-bottom: 0;
+}
+
+#register-form .login-form__passwordOpr div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+/* MyBlogs */
+.Blog__DeleteAdd{
+    display: inline-flex;
+    flex-direction: column;
+    align-self: center;
+    /* background: hotpink; */
+
+}
+.Blog__DeleteAdd button{
+    font-size: 2.5rem;
+    border: 2px solid rgb(87, 196, 177);
+    border-radius: 10px;
+    background: transparent;
+    outline: 0;
+    transition: all 0.5s ease-out;
+}
+.Blog__DeleteAdd > :first-child{
+    margin-bottom: 10%;
+    padding-left: 3%;
+    font-weight: bold;
+}
+.Blog__DeleteAdd span{
+    color: rgb(87, 196, 177);
+    padding: 2%;
+    transition: all 0.5s ease-out;
+}
+.Blog__DeleteAdd button:hover{
+    box-shadow: 0 0 20px rgb(87, 196, 177);
+}
+.Blog__DeleteAdd span:hover{
+    color: #0d223f;
+    text-shadow: 0 0 5px rgb(87, 196, 177);
+}
+
+.newBlogBtn{
+    display: block;
+    position: relative;
+    text-align: right;
+    padding-right: 5%;
+    /* position: fixed; */
+    /* background: greenyellow; */
+    /* border: 1px solid darkred; */
+    margin: 0 2rem;
+    /* justify-self: flex-end; */
+    z-index: 5000;
+}
+.newBlogBtn a{
+    font-size: 2rem;
+    border: 2px solid rgb(87, 196, 177);
+    border-radius: 10px;
+    background: transparent;
+    outline: 0;
+    transition: all 0.5s ease-out;
+    color: rgb(87, 196, 177);
+    padding: 0 1%;
+
+}
+.newBlogBtn span{
+    font-weight: lighter;
+    padding-top: 0;
+}
+.newBlogBtn a:hover{
+    box-shadow: inset 0 0 100px rgb(87, 196, 177),0 0 20px rgb(87, 196, 177);
+    color: #122847;
+    text-shadow: 0 0 5px #122847;
+}
+
+/* adding Blog Page */
+#newBlog input,
+#newBlog textarea{
+    font-size: 5em;
+    padding: 0 0 0 1%;
+    background: transparent;
+    outline: 0;
+    border: 1px solid #122847;
+    border-radius: 10px;
+    color: rgb(87, 196, 177);
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+#newBlog textarea{
+    margin-top: 3%;
+    font-size: 1.5rem;
+    padding: 1%;
+    color: #fff;
+}
+#newBlog .date{
+    margin-top: 2%;
+}
+#newBlog input::placeholder{
+    color: rgb(87, 196, 177);
+}
+#newBlog textarea::placeholder{
+    color: #fff;
+}
+#newBlog input:focus,
+#newBlog textarea:focus{
+    border-color: #122847;
+    box-shadow: 0 0 0 4px rgb(87, 196, 177);
+}
+#newBlog .newBlog--addCancel{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+}
+.newBlog--addCancel button{
+    text-align: center;
+    text-transform: capitalize;
+    font-size: 2em;
+    border: 2px solid rgb(87, 196, 177);
+    border-radius: 10px;
+    background: transparent;
+    outline: 0;
+    transition: all 0.5s ease-out;
+    color: rgb(87, 196, 177);
+    padding: 0 1em;
+    margin: 5%;
+}
+.newBlog--addCancel button:hover{
+    box-shadow: inset 0 0 100px rgb(87, 196, 177),0 0 20px rgb(87, 196, 177);
+    color: #122847;
+    text-shadow: 0 0 5px #122847;
+}
+
+
+
+
+/*
+    *********** 
+    END MAIN
+    ********* 
+*/
+
+/* Footer */
+.copyright{
+    /* background: violet; */
+    /* display: flex; */
+    position: fixed;
+    /* justify-content: center;
+    align-items: center; */
+    right: 45%;
+    bottom: 1%;
+    z-index: -10;
+}
+
+.copyright p{
+    margin-top: 1%;
+    /* background: red; */
+    font-size: 1rem;
+    /* border: 1px solid ; */
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    padding: 0.2rem;
+    /* color: #7a629f; */
+    color: rgb(87, 196, 177);
+    font-weight: 700;
+    text-shadow: 0 0 5px #122847;
+}
+
+.copyright .copyright__Symblo{
+    /* color: #7a629f; */
+    color: black;
+}
+
+
+
+@media screen and (max-width: 1053px) {
+    body{
+        font-size: 50%;
+        position: unset;
+    }
+    .top-nav{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .top-nav__list{
+        display: flex;
+        flex-direction: column;
+    }
+    li{
+        padding-bottom: 1rem;
+    }
+    span#userName{
+        position: relative;
+        margin: 0 0 1.5rem 0.3rem;
+    }
+}
+
+
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+box-shadow: inset 0 0 5px grey; 
+border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+background: rgb(87, 196, 177); 
+border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+background: rgb(87, 196, 177); 
+}

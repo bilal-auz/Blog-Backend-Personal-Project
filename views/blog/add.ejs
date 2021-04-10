@@ -1,37 +1,59 @@
 <%- include('../include/header.ejs') %>
-
+<%- include('../include/navHeader.ejs') %>
 <div id="section-landing">
-    <%- include('../include/navHeader.ejs') %>
-    <div class="wrapper-landing-blog">
         <% if(blogs){ %>
             <% if(blogs.length > 0){ %>
-                <form action="" method="POST">
-                <div class="blogDiv">
-                    <div class="newBlog">
-                        <p class="title"><input autofocus type="text" name="title" placeholder="New Title..." minlength="3" required></p>
-                        <p class="text"><textarea name="blog" cols="80" rows="3" placeholder="New Blog . . ." minlength="5"></textarea></p>
-                        <p class="date"><%= moment().format('MMM DD YYYY'); %></p>
+                <div class="wrapper-landing-blog">
+                    <div id="author">
+                        <p class="author__name"><%= user %></p>
                     </div>
-                    <button class='add'>add</button>
+                    <form id="newBlog" action="" method="POST">
+                    <div class="blogDiv">
+                            <div class="blog">
+                                <input autofocus type="text" name="title" placeholder="New Title..." minlength="3" required>
+
+                                <textarea name="blog" cols="80" rows="3" placeholder="New Blog . . ." minlength="5"></textarea>
+
+                                <p class="date">
+                                    <span class="calendar">&#128197;&#xfe0e;</span>
+                                    <%= moment().format('MMM DD YYYY'); %>
+                                </p>
+                            </div>
+                            <div class="newBlog--addCancel">
+                                <button class='add'>add</button>
+                                <button class="cancel">cancel</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                </form>
-                <button class="cancel">cancel</button>
                 <% let loops = 0; %> 
                 <% for(blog of blogs[index]){ %>
                     <% if(blog === undefined) break; %>
-                    <div class="blog">
-                        <p class="title"><%= blog.title %></p>
-                        <p class="text"><%= blog.text  %></p>
-                        <p class="date"><%= moment(blog.date).format('MMM DD YYYY'); %> </p>  
+                    <div class="wrapper-landing-blog">
+                        <div id="author">
+                            <p class="author__name"><%= blog.author %></p>
+                        </div>
+                        <div class="blogDiv">
+                            <div class="blog">
+                                <p class="title"><%= blog.title %></p>
+                                <p class="text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Delectus fugit corrupti dignissimos recusandae non a nostrum vel praesentium neque est, error consequuntur. Odit voluptatibus rerum itaque earum dolorem iste fugiat!<%= blog.text  %></p>
+                                <p class="date">
+                                    <span class="calendar">&#128197;&#xfe0e;</span>
+                                    <%= moment(blog.date).format('MMM DD YYYY'); %> 
+                                </p>  
+                            </div>
+                            <a class="com" href="blogs/<%= blog._id %>/info">
+                                <p class="comment">more...</p>
+                            </a>
+                        </div>
+                        <% loops++; %> 
                     </div>
-                    <% loops++; %> 
                     <% if(loops >= 2) break; %> 
                 <% } %>
             <% }%>
         <% } else {%>  
             <h1 id="printUser">No Blogs yet</h1> 
         <% } %>
-    </div>
 </div>
 <script>
     const cancelBtn = document.querySelector('button.cancel');
