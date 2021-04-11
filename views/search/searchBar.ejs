@@ -1,13 +1,17 @@
 <%- include('../include/header.ejs') %>
 <%- include('../include/navHeader.ejs')%>
 
-<div id="section-landing">
-        <div class="searchDiv">
-            <form class="searchForm" action="" method="POST">
-                <input class="searchBar" type="text" name="searchTitle" placeholder="blog title">
-                <button class="searchBtn" type="submit">search</button>
-            </form>
+<div id="section-landing" class="searchContainer">
+    <div class="searchDiv">
+        <div class="searchDiv__msgDiv">
+            <p class="message"> *still&nbsp;beta*</p>
         </div>
+        <form class="searchForm" action="" method="POST">
+            <div id="DivSearchBar">
+                <button class="searchBtn" type="submit">&#128269;&#xfe0e;</button>
+                <input class="searchBar" type="text" name="searchTitle" placeholder="blog title...">
+            </div>
+        </form>
+    </div>
 </div>
-
 <%-  include('../include/footer.ejs')%> 

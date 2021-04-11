@@ -4,45 +4,67 @@
 
 <div id="section-landing">
     <div class="wrapper-landing-blog">
+        <div id="author">
+            <p class="author__name"><%= blog.author %></p>
+        </div>
         <div class="blogDiv" >
             <div class="blog">
                 <p class="title"><%= blog.title %></p>
                 <p class="text"><%= blog.text  %></p>
-                <p class="date"><%= moment(blog.date).format('MMM DD YYYY'); %> </p>
+                <p class="date">
+                    <span class="calendar">&#128197;&#xfe0e;</span>
+                    <%= moment(blog.date).format('MMM DD YYYY'); %> 
+                </p>
             </div>
         </div>
-            <% if(blog.author !== user){ %> 
-            <div class="newComment">
+    </div>
+    <% if(blog.author !== user){ %> 
+    <div class="wrapper-landing-comment">
+        <div class="comments">
+            <div class="userInfo">
+                <p><%= user %> </p>
+            </div>
+            <div class="addComment">
+                <form id="newCommentForm" action="" method="POST">
+                    <div class="commentBody">
+                        <textarea type="text" name='comment' placeholder="Type Your Comment..."></textarea>
+                    </div>
+                    <div class="addNewCommentBtn">
+                        <button type="submit">Replay</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <% } %> 
+    <div class="scrollingPanel">
+        <% for(var i = 0; i < blog.comments.length; i++){ %>
+            <div class="wrapper-landing-comment">
+                <div class="comments">
                     <div class="userInfo">
-                        <p><%= user %> </p>
+                        <p><%= blog.comments[i].user.userName%>
+                        </p>
                     </div>
-                    <div class="addComment">
-                        <form id="newCommentForm" action="" method="POST">
-                        <div class="userName"><input type="text" name='comment' placeholder="Type Your Comment..." onfocus="this.placeholder = ''" onfocusout="this.placeholder = 'Type Your Comment...'"></div>
-                        <div class="theNewComment"><button type="submit">Replay</button></div>
-                        </form>
+                    <div class="commentsInfo">
+                        <div class="userComment"><p><%= blog.comments[i].comment %> </p></div>
                     </div>
+                    <% if(blog.author !== user){ %> 
+                        <div class="commentOpr">
+                            <div>
+                                <button id="deleteComment"  data-doc="<%= blog._id %>" data-comment="<%= blog.comments[i]._id %>"><span>&#128465</span></button>
+                            </div>
+                            <div>
+                                <button id="editComment" data-doc="<%= blog._id %>" data-comment="<%= blog.comments.indexOf(blog.comments[i]) %>"><span>
+                                    &#x270E
+                                </span>
+                            </button>
+                            </div>
+
+                        </div>
+                    <% } %> 
+                </div>
             </div>
-            <% } %> 
-            <div class="scrollingPanel">
-                <% for(var i = 0; i < blog.comments.length; i++){ %>
-                    <div class="comments">
-                        <div class="userInfo">
-                            <div class="userName" hidden><%= blog.comments[i].user.userName%></div>
-                        </div>
-                        <div class="commentsInfo">
-                            <div class="userName"><p><%= blog.comments[i].user.userName %></p></div>
-                            <div class="userComment"><p><%= blog.comments[i].comment %> </p></div>
-                            <% if(blog.author !== user){ %> 
-                                <div class="commentOpr">
-                                    <button id="deleteComment"  data-doc="<%= blog._id %>" data-comment="<%= blog.comments[i]._id %>">&#128465</button>
-                                    <button id="editComment" data-doc="<%= blog._id %>" data-comment="<%= blog.comments.indexOf(blog.comments[i]) %>">&#x270E</button>
-                                </div>
-                            <% } %> 
-                        </div>
-                    </div>
-                <% } %>  
-        </div>
+        <% } %>  
     </div>
 </div>
 <div class="popUp" id="popUpBack">
@@ -81,7 +103,8 @@
     }
 </script>
 
-<script>
+<!-- show hide opr btns -->
+<!-- <script>
     const blogDiv = document.querySelectorAll('div.comments');
 
     blogDiv.forEach(dv => dv.onmouseover = function (){
@@ -101,7 +124,7 @@
         // $(dv).find('#editComment').css('display', 'none');
         $(dv).find('div.commentOpr').css('display', 'none');
     });
-</script>
+</script> -->
 
 <script>
     const delBtn = document.querySelectorAll('button#deleteComment');
@@ -125,14 +148,15 @@
     const textBlog = document.querySelector('.textBlog');
 
     edit.forEach(btn => btn.onclick = function (){
-        var commentToEdit = <%- JSON.stringify(blog.comments) %>
-        commentToEdit = commentToEdit[btn.dataset.comment];
-        alert(commentToEdit._id);
-        alert(commentToEdit.comment);
-        // inputTitle.value = comment[btn.dataset.comment].title;
-        textBlog.value = commentToEdit.comment;
-        document.querySelector('.blogId').value = commentToEdit._id;
-        popUp.style.display = 'flex';
+        alert('Editing Not available right now');
+        // var commentToEdit = <%- JSON.stringify(blog.comments) %>
+        // commentToEdit = commentToEdit[btn.dataset.comment];
+        // alert(commentToEdit._id);
+        // alert(commentToEdit.comment);
+        // // inputTitle.value = comment[btn.dataset.comment].title;
+        // textBlog.value = commentToEdit.comment;
+        // document.querySelector('.blogId').value = commentToEdit._id;
+        // popUp.style.display = 'flex';
     });
 
     document.querySelector(".closeBtn").addEventListener('click', (e)=>{

@@ -2,14 +2,14 @@
 <nav class="top-nav">
     <ul id="title">
         <li>
-            <a href="/home">BLOG</a>
-            <span id="userName">
+            <a href="/home">BLOG|</a>
+            <p id="userName">
             <% if(pass){ %> 
-                |<%= user %>
+                <%= user %>
             <% }else{ %> 
                 welcome
             <% } %> 
-            </span>
+            </p>
         </li>
     </ul>
     <ul class="top-nav__list">

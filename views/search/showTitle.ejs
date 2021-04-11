@@ -4,31 +4,37 @@
 <div id="section-landing">
     <div class="wrapper-landing-blog">
         <% if(!blog){%>
-            <h1 id="printUser"> Can't Find It Sorry :( </h1>
+        <p class="notFoundBlog"> Can't Find It Sorry :( </p>
         <% }else{%>  
-            <div class="blogDiv" >
-                <div class="blog">
-                    <p class="title"><%= blog.title %><span id="author">|By <%= blog.author %></span></p>
-                    <p class="text"><%= blog.text  %></p>
-                    <p class="date"><%= moment(blog.date).format('MMM DD YYYY'); %> </p>
-                </div>
+        <div id="author">
+            <p class="author__name"><%= blog.author %></p>
+        </div>
+        <div class="blogDiv" >
+            <div class="blog">
+                <p class="title"><%= blog.title %></p>
+                <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. A, neque. Impedit molestiae minus odit tempore aliquam sit natus blanditiis distinctio nam? Deleniti recusandae numquam reiciendis distinctio, reprehenderit dignissimos rerum incidunt.<%= blog.text  %></p>
+                <p class="date">
+                    <span class="calendar">&#128197;&#xfe0e;</span>	
+                    <%= moment(blog.date).format('MMM DD YYYY'); %>
+                </p>
             </div>
-        
-            <div class="scrollingPanel">
-                <% for(var i = 0; i < blog.comments.length; i++){ %>
-                    <div class="comments">
-                        <div class="userInfo">
-                            <div class="userName" hidden><%= blog.comments[i].user.userName%></div>
-                        </div>
-                        <div class="commentsInfo">
-                            <div class="userName"><p><%= blog.comments[i].user.userName%></p></div>
-                            <div class="userComment"><p><%= blog.comments[i].comment %> </p></div>
-                        </div>      
-                    </div>
-                <% } %>  
-            </div>
-        <% } %> 
+        </div>
     </div>
+        
+    <!-- <div class="scrollingPanel">
+        <% for(var i = 0; i < blog.comments.length; i++){ %>
+            <div class="comments">
+                <div class="userInfo">
+                    <div class="userName" hidden><%= blog.comments[i].user.userName%></div>
+                </div>
+                <div class="commentsInfo">
+                    <div class="userName"><p><%= blog.comments[i].user.userName%></p></div>
+                    <div class="userComment"><p><%= blog.comments[i].comment %> </p></div>
+                </div>      
+            </div>
+        <% } %>  
+    </div> -->
+    <% } %> 
 </div>
 
 <% if(blog){ %>

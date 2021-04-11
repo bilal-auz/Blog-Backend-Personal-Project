@@ -24,7 +24,8 @@ router.post('/', async(req, res)=>{
 
     if(req.session._id){
         passVal = true;
-        userName = await User.findById(req.session._id).select({userName: 1});
+        // userName = await User.findById(req.session._id).select({userName: 1});
+        userName = await getUserName(req.session._id);
     }
 
     const blog = await Blog.find({title : req.body.searchTitle });
