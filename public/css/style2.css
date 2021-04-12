@@ -2,10 +2,6 @@
     margin: 0;
     padding: 0;
 }
-@font-face {
-    font-family: blogTitle;
-    src: url(./BebasNeue-Regular.ttf);
-}
 html, body{
     height: 100%;
 }
@@ -265,7 +261,7 @@ ul.top-nav__list{
 
 /*Login&Register*/
 .section-landing--form{
-    border: 1px solid springgreen;
+    /* border: 1px solid springgreen; */
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -729,7 +725,7 @@ p#login-resgisterNow span{
 
 /* SEARCHING */
 .searchContainer{
-    border: 1px solid tomato;
+    /* border: 1px solid tomato; */
 }
 .searchDiv{
     display: flex;
