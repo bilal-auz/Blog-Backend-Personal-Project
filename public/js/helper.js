@@ -8,3 +8,4 @@ function showHidePass() {
         (confPassInput.type === 'password')? confPassInput.type = 'text' : confPassInput.type = 'password';
     }
 };
+

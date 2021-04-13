@@ -40,6 +40,7 @@ const blogSchema = new mongoose.Schema({
 
 const Blog = mongoose.model('Blogs', blogSchema);
 
+// return [][3] max 3 blogs in each array sent to frontend (pages method)
 async function getBlogs(){
     const allBlogs = await Blog.find().sort({date: -1});
 
@@ -59,6 +60,11 @@ async function getBlogs(){
     }
     return blogs;
     //return blog
+}
+
+async function getAllBlogs() {
+    const blogs = await Blog.find().sort({date : -1});
+    return blogs
 }
 
 function validateBlog(blog) {
