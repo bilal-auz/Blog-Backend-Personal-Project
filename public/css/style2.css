@@ -237,16 +237,17 @@ ul.top-nav__list{
     top: 0;
     width: 100%;
     height: 100%;
-    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.384);
+    backdrop-filter: blur(8px);
     z-index: 5555;
+    box-shadow: inset 0 0 2000px #122847;
 
 }
 .popUp .wrapper-landing-blog{
-    transition: all 0.5s ease-out 1s;
-}
-.popUp .wrapper-landing-blog:hover{
-    box-shadow: 0 0 50px rgb(87, 196, 177);
-    
+    margin-top: 0;
+    height: unset;
+    box-shadow: 0 0 100px rgb(87, 196, 177), inset 0 0 100px #000;
+    /* transition: all 0.5s ease-out 1s; */
 }
 .popUp .closeBtn{
     display: inline-flex;
@@ -258,6 +259,8 @@ ul.top-nav__list{
     font-size: 1.5rem;
     cursor: pointer;
 }
+
+
 
 /*Login&Register*/
 .section-landing--form{
@@ -534,7 +537,7 @@ p#login-resgisterNow span{
     padding: 0 0 0 1%;
     background: transparent;
     outline: 0;
-    border: 1px solid #122847;
+    border: 1px solid #ffffff;
     border-radius: 10px;
     color: rgb(87, 196, 177);
     transition: border-color 0.15s, box-shadow 0.15s;
@@ -719,6 +722,8 @@ p#login-resgisterNow span{
 .commentOpr div button:hover{
     box-shadow: 0 0 20px rgb(87 196 177);
 }
+
+
 
 
 

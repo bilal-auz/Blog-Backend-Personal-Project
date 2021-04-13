@@ -68,24 +68,31 @@
     </div>
 </div>
 <div class="popUp" id="popUpBack">
-    <div class="contPopUp">
+    <div class="wrapper-landing-blog">
         <p class="closeBtn">&#10006;</p>
+        <div id="author">
+            <p class="author__name"><%= user %></p>
+        </div>
+        <form id="newBlog" action="edit" method="post">
+            <div class="blogDiv">
+                <div class="blog">
+                    <input name="commentId" class="blogId" value="" hidden>
+                    <textarea type="text" name="comment" class="textBlog" id="blog" rows="5" cols="60" maxlength="120" required></textarea>
+                </div>
+                <div class="newBlog--addCancel">
+                    <button type="submit">Edit</button>
+                </div>
+            </div>
+        </form>
+        <!-- <div class="contPopUp">
+            <p class="closeBtn">&#10006;</p>
         <h2>Edit</h2>
         <div class="popupEdit" id="popUpSmall">
-            <form action="edit" method="post">
-                <div>
-                <input name="commentId" class="blogId" value="" hidden>
-                <!-- <input type="text" class="inputTitle" name="title" id="title" placeholder="Title" required> -->
-                </div>
-                <div>
-                <textarea type="text" name="comment" class="textBlog" id="blog" rows="5" cols="60" maxlength="120" required></textarea>
-                </div>
-                <button type="submit">Edit</button>
-            </form>
-        </div>
+        </div> -->
     </div>
 </div>
 
+<!-- show/hide scrol bar depends on number of comments -->
 <script>
     const divScroll = document.querySelector('div.scrollingPanel');
     const len = <%=blog.comments.length%>;
@@ -126,6 +133,7 @@
     });
 </script> -->
 
+<!-- deleting comment -->
 <script>
     const delBtn = document.querySelectorAll('button#deleteComment');
 
@@ -141,26 +149,23 @@
     });
 </script>
 
+<!-- editing comment -->
 <script>
     var edit = document.querySelectorAll('button#editComment');
     const popUp = document.getElementById('popUpBack');
-    // const inputTitle = document.querySelector('.inputTitle')
     const textBlog = document.querySelector('.textBlog');
 
     edit.forEach(btn => btn.onclick = function (){
-        alert('Editing Not available right now');
-        // var commentToEdit = <%- JSON.stringify(blog.comments) %>
-        // commentToEdit = commentToEdit[btn.dataset.comment];
-        // alert(commentToEdit._id);
-        // alert(commentToEdit.comment);
-        // // inputTitle.value = comment[btn.dataset.comment].title;
-        // textBlog.value = commentToEdit.comment;
-        // document.querySelector('.blogId').value = commentToEdit._id;
-        // popUp.style.display = 'flex';
+        var commentToEdit = <%- JSON.stringify(blog.comments) %>
+        commentToEdit = commentToEdit[btn.dataset.comment];
+        textBlog.value = commentToEdit.comment;
+        document.querySelector('.blogId').value = commentToEdit._id;
+        $('#popUpBack').fadeIn(800);
+        popUp.style.display = 'flex';
     });
 
     document.querySelector(".closeBtn").addEventListener('click', (e)=>{
-        popUp.style.display = 'none';
+        $('#popUpBack').fadeOut(400);
     });
 </script>
 

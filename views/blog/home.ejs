@@ -72,22 +72,21 @@
 <script>
     var edit = document.querySelectorAll('button.edit');
     const popUp = document.getElementById('popUpBack');
-    const inputTitle = document.querySelector('.inputTitle')
+    const inputTitle = document.querySelector('.inputTitle');
     const textBlog = document.querySelector('.textBlog');
     const blogId = document.querySelector('.blogId');
 
     edit.forEach(btn => btn.onclick = function (){
-        alert('Editing Not available right now');
-        // const blogs = <%- JSON.stringify(blogs[index])%>;
-        // blogId.value = blogs[btn.dataset.doc]._id;
-        // inputTitle.value = blogs[btn.dataset.doc].title;
-        // textBlog.value = blogs[btn.dataset.doc].text;
-        // $('#popUpBack').fadeIn(800);
-        // popUp.style.display = 'flex';
+        const blogs = <%- JSON.stringify(blogs[index])%>;
+        blogId.value = blogs[btn.dataset.doc]._id;
+        inputTitle.value = blogs[btn.dataset.doc].title;
+        textBlog.value = blogs[btn.dataset.doc].text;
+        $('#popUpBack').fadeIn(800);
+        popUp.style.display = 'flex';
     });
 
     document.querySelector(".closeBtn").addEventListener('click', (e)=>{
-        $('#popUpBack').fadeOut(800);
+        $('#popUpBack').fadeOut(400);
     });
 </script>
 
