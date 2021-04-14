@@ -22,6 +22,7 @@
     "express-session": "^1.17.1",
     "helmet": "^4.4.1",
     "joi": "^17.4.0",
+    "memorystore": "^1.6.6",
     "moment": "^2.29.1",
     "mongoose": "^5.11.15"
   }

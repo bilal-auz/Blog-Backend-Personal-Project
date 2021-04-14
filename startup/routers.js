@@ -4,6 +4,7 @@ const register = require('../routes/register');
 const blogs = require('../routes/blog');
 const search = require('../routes/search');
 const session = require('express-session');
+const MemoryStore = require('memorystore')(session);
 const express = require('express');
 const {User, validateUser, getUserBlogs, getUserName} = require('../models/User');
 const getBlogs = require('../models/blog').getBlogs;
@@ -18,6 +19,9 @@ module.exports = function (app){
     app.use(express.urlencoded({extended:true}));
     app.use(express.static('./public'));
     app.use(session({
+        store : new MemoryStore({
+            checkPeriod: 86400000
+        }),
         secret : 'wrok hard',
         resave : false,
         saveUninitialized : false
