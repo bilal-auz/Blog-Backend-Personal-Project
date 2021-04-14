@@ -20,8 +20,8 @@ require('./startup/db')();
 //importing router
 require('./startup/routers')(app);
 
-const port = process.env.port || config.get('port');
-const host = process.env.host || '0.0.0.0';
+const port = process.env.PORT || config.get('port');
+const host = process.env.HOST || '0.0.0.0';
 app.listen(port, host, ()=> {console.log(`listeing to PORT: ${port}, HOST: ${host}`)});
 
 
