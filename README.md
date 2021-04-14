@@ -1,4 +1,4 @@
-![image](https://user-images.githubusercontent.com/68505433/114399897-f270b280-9b90-11eb-8c8f-ae63ebb4d521.png)
+![temp](https://user-images.githubusercontent.com/68505433/114787932-19d1a600-9d70-11eb-8b3a-844c494d72ae.png)
 
 This Blog is built using NodeJS.
 
