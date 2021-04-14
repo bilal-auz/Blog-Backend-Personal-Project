@@ -21,6 +21,7 @@ require('./startup/db')();
 require('./startup/routers')(app);
 
 const port = process.env.port || config.get('port');
-app.listen(port , ()=> {console.log(`listeing to ${port}`)});
+const host = process.env.host || '0.0.0.0';
+app.listen(port, host, ()=> {console.log(`listeing to PORT: ${port}, HOST: ${host}`)});
 
 
