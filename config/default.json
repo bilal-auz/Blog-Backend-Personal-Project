@@ -1,6 +1,6 @@
 {
     "name" : "Blog",
-    "db" : "mongodb://localhost/TheBlog",
+    "db" : "mongodb+srv://BlogNodeJs:Blog123@cluster0.zrr4f.mongodb.net/test",
     "host" : "localhost",
     "port" : 5050
 }
