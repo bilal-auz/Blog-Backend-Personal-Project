@@ -1,4 +1,3 @@
-
 function showHidePass() {
     const passInput = document.getElementById("Pass");
     const confPassInput = document.getElementById('confPass');
@@ -16,10 +15,9 @@ function nextPage(pageBtn){
 function clickedBtn(){
     const urlParams = new URLSearchParams(window.location.search);
 
-    const pageNumber = urlParams.get('page');
-    
+    let pageNumber = urlParams.get('page') || 1;
     const bbtn = document.querySelector(`button[value = "${pageNumber}"]`);
-    
+
     bbtn.disabled = true;
     bbtn.style.cursor = "unset";
     bbtn.style.background = "#122847";
