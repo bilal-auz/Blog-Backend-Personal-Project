@@ -95,21 +95,6 @@
     });
 </script>
 
-<!-- showing edit/delete buttons for every blog -->
-<!-- <script>
-    const blogDiv = document.querySelectorAll('div.blogDiv');
-
-    blogDiv.forEach(dv => dv.onmouseover = function (){
-        $(dv).find('#edit').css('display', 'inline');
-        $(dv).find('#delete').css('display', 'inline');
-    });
-
-    blogDiv.forEach(dv => dv.onmouseout = function (){
-        $(dv).find('#edit').css('display', 'none');
-        $(dv).find('#delete').css('display', 'none');
-    });
-</script> -->
-
 <!-- delete blog -->
 <script>
     const delBtn = document.querySelectorAll('button.delete');
@@ -122,7 +107,6 @@
             .catch(err=>{console.log('ERROR DELETE')})
         ;
     });
-    
 </script>
 
 <%-  include('../include/footer.ejs')%> 

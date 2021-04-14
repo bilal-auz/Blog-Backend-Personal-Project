@@ -1,8 +1,6 @@
 <%- include('./include/header.ejs') %>
 <%- include('./include/navHeader.ejs') %>
 <div id="section-landing">
-    <!-- <div class="wrapper-landing-blog"> -->
-    <!-- <div> -->
     <% if(blogs) { %>
         <% if(blogs[0].length > 0){ %>
             <div class="pagingBar">
@@ -55,32 +53,6 @@
             </form>
         </div>
     </div>
-</div>
-
-
-<!-- <script>
-    const back = document.querySelector('button.back');
-    const next = document.querySelector('button.next');
-    if(<%= index %> > 0){
-        back.style.display = 'inline';
-    }else{
-        back.style.display = 'none';
-    }
-
-    if(<%= index %> >= <%= blogs.length-1 %>){
-        next.style.display = 'none';
-    }
-
-    next.addEventListener('click', (e)=>{
-        <%= index += 2 %>
-        window.location.href = `?page=<%=index%>`;
-    });
-
-    back.addEventListener('click', (e)=>{
-        <%= index -=2 %>
-        window.location.href = `?page=<%=index%>`;
-    });
-</script> -->
 </div>
 
 <%-  include('./include/footer.ejs')%> 
