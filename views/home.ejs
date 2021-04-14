@@ -1,10 +1,13 @@
 <%- include('./include/header.ejs') %>
 <%- include('./include/navHeader.ejs') %>
 <div id="section-landing">
-    <!-- <div class="wrapper-landing-blog"> -->
-    <!-- <div> -->
-        <% if(blogs) { %>
-            <% if(blogs.length > 0){ %>
+    <% if(blogs) { %>
+        <% if(blogs.length > 0){ %>
+            <div class="pagingBar">
+                <% for(var i = 0; i < blogs.length; i++){%>
+                    <button class="pagesBtns" value="<%= i+1 %>" onclick="nextPage(this);"><%= i+1 %></button>
+                <% } %>
+            </div>
                 <% for(blog of blogs[index]){ %> 
                     <% if(blog === undefined) break; %> 
                     <div class="wrapper-landing-blog" data-sal="zoom-in" data-sal-delay="50">
@@ -88,7 +91,14 @@
     });
 </script> -->
 </div>
+<script>
+    // const pagesBtns = document.querySelectorAll('.pagesBtns');
+    // pagesBtns.forEach(page => page.onclick = function(){
+    //     alert(page.getAttribute('value'));
+    // });
 
+
+</script>
 <%-  include('./include/footer.ejs')%> 
 
 
