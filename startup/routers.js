@@ -51,6 +51,7 @@ module.exports = function (app){
     app.use('/register', register);
     app.use('/blogs', blogs);
     app.use('/search', search);
+    
     app.use('/logout', (req,res,next) =>{
         if(req.session){
             req.session.destroy((err) =>{
