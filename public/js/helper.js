@@ -1,4 +1,3 @@
-
 function showHidePass() {
     const passInput = document.getElementById("Pass");
     const confPassInput = document.getElementById('confPass');

@@ -1,6 +1,8 @@
 <%- include('./include/header.ejs') %>
 <%- include('./include/navHeader.ejs') %>
 <div id="section-landing">
+    <!-- <div class="wrapper-landing-blog"> -->
+    <!-- <div> -->
     <% if(blogs) { %>
         <% if(blogs.length > 0){ %>
             <div class="pagingBar">
@@ -91,14 +93,7 @@
     });
 </script> -->
 </div>
-<script>
-    // const pagesBtns = document.querySelectorAll('.pagesBtns');
-    // pagesBtns.forEach(page => page.onclick = function(){
-    //     alert(page.getAttribute('value'));
-    // });
 
-
-</script>
 <%-  include('./include/footer.ejs')%> 
 
 

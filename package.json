@@ -4,7 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "worker": "node index.js"
+  },
+  "engines": {
+    "node": "14.15.4",
+    "npm": "6.14.10"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +23,7 @@
     "express-session": "^1.17.1",
     "helmet": "^4.4.1",
     "joi": "^17.4.0",
+    "memorystore": "^1.6.6",
     "moment": "^2.29.1",
     "mongoose": "^5.11.15"
   }
