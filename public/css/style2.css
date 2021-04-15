@@ -398,6 +398,14 @@ p#login-resgisterNow span{
     border-radius: 25px;
 }
 
+.feedBack{
+    color: rgb(255, 174, 0);
+    font-size: 0.7em;
+    position: absolute;
+    right: -5%;
+    font-variant: all-petite-caps;
+}
+
 .login-register--form .login-form__divs{
     margin-bottom: 1rem;
     position: relative;

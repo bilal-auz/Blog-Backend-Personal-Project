@@ -1,34 +1,54 @@
 const express = require('express');
 const router = express.Router();
 const {User, validateUser} = require('../models/User');
+const emailValidator = require("email-validator");
 
 router.get('/', (req, res) =>{
     if(req.session._id){
         return res.redirect('home');
     }
 
-    res.render('register', {title : 'Register',pass: false});
+    res.render('register', {title : 'Register',pass: false, errors: ""});
 });
 
 router.post('/', async (req, res)=>{
-    //turn into middleware
+    let errors = {
+        userName: "",
+        email: "",
+        password: "",
+        confPassword: ""
+    };
+
     if(req.session._id) return res.redirect('home');
 
-    //into midlleware
-    const {error} = validateUser(req.body);
-    if(error) res.redirect('/register');
-    
-    var tempBody = req.body;
+    try{
+        //validtion for empty (till now)
+        const {error} = validateUser(req.body);
+        if(error){
+            errors.userName = error.message;
+            throw Error(error.message);
+        }
 
-    //show the error message
-    if(tempBody.password !== tempBody.confPassword){
-        return res.status(401).render('register', {title : 'Register', pass: false, error: 'Not same password'});
+        //email Validation
+        if(!emailValidator.validate(req.body.email)){
+            errors.email = "Not Valid Email";
+            throw Error("Not Valid Email");
+        } 
+
+        //passwords validation
+        if(req.body.password !== req.body.confPassword){
+            errors.password = "Doesn't Match";
+            errors.confPassword = "Doesn't Match";
+            throw Error("Passwords Don't Match");
+        }
+    }catch(ex){
+        return res.render('register', {title : 'Register', pass: false, errors: errors});
     }
 
     const newUser = User({
-        userName : tempBody.userName,
-        email : tempBody.email,
-        password : tempBody.password
+        userName : req.body.userName,
+        email : req.body.email,
+        password : req.body.password
     });
 
     await newUser.save();
