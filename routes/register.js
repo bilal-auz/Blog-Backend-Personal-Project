@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {User, validateUser} = require('../models/User');
+const {User, validateUser, isUserNameTaken, isEmailTaken} = require('../models/User');
 const emailValidator = require("email-validator");
 
 router.get('/', (req, res) =>{
@@ -42,6 +42,16 @@ router.post('/', async (req, res)=>{
             errors.confPassword = "Doesn't Match";
             throw Error("Passwords Don't Match");
         }
+        if(await isUserNameTaken(req.body.userName)){
+            errors.userName = "User Name Is Taken";
+            throw Error("User Name Is Taken");
+        }
+
+        if(await isEmailTaken(req.body.email)){
+            errors.email = "Email Name Is Taken";
+            throw Error("Email Name Is Taken");
+        }
+
     }catch(ex){
         return res.render('register', {title : 'Register', pass: false, errors: errors, values: req.body});
     }

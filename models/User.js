@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const {blogSchema, Blog} = require('./blog');
 const joi = require('joi');
+
 const userSchema = new mongoose.Schema({
     userName : {
         type: String,
@@ -68,7 +69,21 @@ async function getUserName(id){
 
     return user.userName;
 }
+
+async function isUserNameTaken(userName) {
+    const checkUser = await User.find({userName});
+    if(checkUser.length !== 0) return true;
+    return false;
+};
+
+async function isEmailTaken(email) {
+    const checkEmail = await User.find({email});
+    if(checkEmail.length !== 0) return true;
+    return false;
+}
 module.exports.User = User;
 module.exports.validateUser = validateUser;
 module.exports.getUserBlogs = getUserBlogs;
 module.exports.getUserName = getUserName;
+module.exports.isUserNameTaken = isUserNameTaken;
+module.exports.isEmailTaken = isEmailTaken;
