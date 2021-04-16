@@ -49,7 +49,7 @@ router.post('/', async (req, res)=>{
     }
 
     //if errors return to login form with errors feedBack
-    return res.render('login', {title : 'login', pass: false, errors, values: req.body});
+    if(errors.email || errors.password) return res.render('login', {title : 'login', pass: false, errors, values: req.body});
 
     //assing session id with user id
     req.session._id = checkUser._id;
