@@ -20,6 +20,7 @@ router.post('/', async (req, res)=>{
 
     //checks before fetching
     try{
+        req.body.email = req.body.email.trim();
         if(!req.body.email){
             errors.email = "*Empty Email";
             throw Error("*Empty Email");
@@ -33,7 +34,8 @@ router.post('/', async (req, res)=>{
             throw Error("*Empty Email");
         } 
     }catch(ex){
-        return res.render('login', {title : 'login', pass: false, errors, values: req.body});
+        console.log(ex);
+        return res.render('login', {title : 'login', pass: false, errors: errors, values: req.body});
     }
     
     //try fetching the user

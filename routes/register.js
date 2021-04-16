@@ -22,6 +22,7 @@ router.post('/', async (req, res)=>{
     if(req.session._id) return res.redirect('home');
 
     try{
+        req.body.email = req.body.email.trim();
         //validtion for empty (till now)
         const {error} = validateUser(req.body);
         if(error){
