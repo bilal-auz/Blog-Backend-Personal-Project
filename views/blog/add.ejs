@@ -12,7 +12,7 @@
                             <div class="blog">
                                 <input autofocus type="text" name="title" placeholder="New Title..." minlength="3" required>
 
-                                <textarea name="blog" cols="80" rows="3" placeholder="New Blog . . ." minlength="5"></textarea>
+                                <textarea name="blog" cols="80" rows="3" placeholder="New Blog . . ." minlength="5" maxlength="240"></textarea>
 
                                 <p class="date">
                                     <span class="calendar">&#128197;&#xfe0e;</span>
@@ -36,7 +36,7 @@
                         <div class="blogDiv">
                             <div class="blog">
                                 <p class="title"><%= blog.title %></p>
-                                <p class="text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Delectus fugit corrupti dignissimos recusandae non a nostrum vel praesentium neque est, error consequuntur. Odit voluptatibus rerum itaque earum dolorem iste fugiat!<%= blog.text  %></p>
+                                <p class="text"><%= blog.text  %></p>
                                 <p class="date">
                                     <span class="calendar">&#128197;&#xfe0e;</span>
                                     <%= moment(blog.date).format('MMM DD YYYY'); %> 

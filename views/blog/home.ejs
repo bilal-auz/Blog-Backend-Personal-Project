@@ -17,7 +17,7 @@
                     <div class="blogDiv">
                         <div class="blog" data-doc="<%= blogs.indexOf(blog) %>">
                             <p class="title"><%= blog.title %></p>
-                            <p class="text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates neque repellendus non esse illo culpa aperiam numquam ullam quae laboriosam assumenda iste modi nihil labore sit laborum enim, ipsum dicta.<%= blog.text  %></p>
+                            <p class="text"><%= blog.text  %></p>
                             <p class="date">
                                 <span class="calendar">&#128197;&#xfe0e;</span>
                                 <%= moment(blog.date).format('MMM DD YYYY'); %>
@@ -58,8 +58,8 @@
             <div class="blogDiv">
                 <div class="blog">
                     <input name="blogId" class="blogId" value="" hidden>
-                    <input type="text" class="inputTitle" name="title" id="title" placeholder="Title" required>
-                    <textarea type="text" name="blog" class="textBlog" id="blog" rows="5" cols="60" maxlength="120" required></textarea>
+                    <input type="text" class="inputTitle" name="title" id="title" placeholder="Title" minlength="3" required>
+                    <textarea type="text" name="blog" class="textBlog" id="blog" rows="5" cols="60" minlength="5" maxlength="240" required></textarea>
                     <p class="date">
                         <span class="calendar">&#128197;&#xfe0e;</span>
                         <%= moment().format('MMM DD YYYY'); %>

@@ -240,6 +240,9 @@ ul.top-nav__list{
     align-items: center;
     overflow: hidden;
     line-height: 1.5;
+    word-wrap: break-word;
+    height: 5em;
+    max-width: 70ch;
 }
 
 .blog .date{

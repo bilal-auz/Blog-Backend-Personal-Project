@@ -38,7 +38,9 @@ router.get('/add', auth, asyncHandler(async (req,res)=>{
 
 router.post('/add', [auth, validateInputs],  asyncHandler(async (req, res, next)=>{
     const userName = await getUserName(req.session._id);
-
+    if(req.body.title.length > 15) req.body.title = req.body.title.substring(0, 15);
+    if(req.body.blog.length > 240) req.body.blog = req.body.blog.substring(0, 240);
+    
     const newBLog = Blog({
         author : userName,
         title : req.body.title,

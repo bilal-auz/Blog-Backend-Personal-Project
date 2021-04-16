@@ -10,12 +10,13 @@ const blogSchema = new mongoose.Schema({
     title : {
         type : String,
         minLength : 3,
-        maxLength : 15
+        maxLength : 15,
+        required : true
     },
     text : {
         type : String,
         minLength : 5,
-        maxLength : 120,
+        maxLength : 240,
         required : true
     },
     date : {
