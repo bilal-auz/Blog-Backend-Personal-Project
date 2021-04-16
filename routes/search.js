@@ -14,7 +14,7 @@ router.get('/', async (req,res)=>{
         userName = await getUserName(req.session._id);
     }
     
-    res.render('./search/searchBar', {title: 'Blogs', pass : passVal, user : userName});
+    res.render('./search/searchBar', {title: 'Search', pass : passVal, user : userName});
 });
 
 

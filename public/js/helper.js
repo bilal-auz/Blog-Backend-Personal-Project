@@ -18,11 +18,13 @@ function clickedBtn(){
     let pageNumber = urlParams.get('page') || 1;
     const bbtn = document.querySelector(`button[value = "${pageNumber}"]`);
 
-    bbtn.disabled = true;
-    bbtn.style.cursor = "unset";
-    bbtn.style.background = "#122847";
-    bbtn.style.boxShadow  = "0 0 5px rgb(87, 196, 177)";
-    bbtn.style.color = "rgb(87, 196, 177)";
-    bbtn.style.animation = 'pulse 1s infinite';
+    if(bbtn){
+        bbtn.disabled = true;
+        bbtn.style.cursor = "unset";
+        bbtn.style.background = "#122847";
+        bbtn.style.boxShadow  = "0 0 5px rgb(87, 196, 177)";
+        bbtn.style.color = "rgb(87, 196, 177)";
+        bbtn.style.animation = 'pulse 1s infinite';
+    } 
 };
 
