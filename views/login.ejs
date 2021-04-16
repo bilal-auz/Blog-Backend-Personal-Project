@@ -15,11 +15,11 @@
             <form class="login-register--form"      id="login-form" action="" method="POST">
                 <div class="login-form__divs">
                     <label for="Email">E-mail <span class="feedBack"><%= errors.email %></span></label>
-                    <input id="Email" type="text" name="email" >
+                    <input id="Email" type="text" name="email" value="<%= values.email %>">
                 </div>
                 <div class="login-form__divs">
                     <label for="Pass">Password <span class="feedBack"><%= errors.password %> </span></label>
-                    <input id="Pass" type="password" name="password" >
+                    <input id="Pass" type="password" name="password" value="<%= values.password %>">
                 </div>
                 <div class="login-form__passwordOpr">
                     <input type="checkbox" id="showPass" onclick="showHidePass()">

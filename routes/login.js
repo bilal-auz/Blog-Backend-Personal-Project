@@ -6,7 +6,7 @@ const emailValidator = require("email-validator");
 
 router.get('/', (req, res) =>{
     if(req.session._id) return res.redirect('/');
-    return res.render('login', {title : 'login',pass: false, errors: {}});
+    return res.render('login', {title : 'login',pass: false, errors: {}, values: {}});
 });
 
 
@@ -33,7 +33,7 @@ router.post('/', async (req, res)=>{
             throw Error("*Empty Email");
         } 
     }catch(ex){
-        return res.render('login', {title : 'login', pass: false, errors});
+        return res.render('login', {title : 'login', pass: false, errors, values: req.body});
     }
     
     //try fetching the user
@@ -49,7 +49,7 @@ router.post('/', async (req, res)=>{
     }
 
     //if errors return to login form with errors feedBack
-    if(errors.email || errors.password) return res.render('login', {title : 'login', pass: false, errors});
+    return res.render('login', {title : 'login', pass: false, errors, values: req.body});
 
     //assing session id with user id
     req.session._id = checkUser._id;

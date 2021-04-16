@@ -8,7 +8,7 @@ router.get('/', (req, res) =>{
         return res.redirect('home');
     }
 
-    res.render('register', {title : 'Register',pass: false, errors: ""});
+    res.render('register', {title : 'Register',pass: false, errors: "", values: {}});
 });
 
 router.post('/', async (req, res)=>{
@@ -42,7 +42,7 @@ router.post('/', async (req, res)=>{
             throw Error("Passwords Don't Match");
         }
     }catch(ex){
-        return res.render('register', {title : 'Register', pass: false, errors: errors});
+        return res.render('register', {title : 'Register', pass: false, errors: errors, values: req.body});
     }
 
     const newUser = User({

@@ -15,19 +15,19 @@
             <form class="login-register--form" id="register-form" action="" method="POST">
                 <div class="login-form__divs">
                     <label>Username <span class="feedBack"><%= errors.userName %></span></label>
-                    <input type="text" name="userName" placeholder="USER NAME" >
+                    <input type="text" name="userName" placeholder="USER NAME" value="<%= values.userName %>">
                 </div>
                 <div class="login-form__divs">
                     <label>E-mail <span class="feedBack"><%= errors.email %></span></label>
-                    <input type="text" placeholder="Email" name="email" >
+                    <input type="text" placeholder="Email" name="email"value="<%= values.email %>">
                 </div>
                 <div class="login-form__divs">
                     <label>Password <span class="feedBack"><%= errors.password %></span></label>
-                    <input id="Pass" type="password" name="password" placeholder="Password"  >
+                    <input id="Pass" type="password" name="password" placeholder="Password"  value="<%= values.password %>">
                 </div>
                 <div class="login-form__divs confPassDiv">
                     <label>Confirm Password <span class="feedBack"><%= errors.confPassword %></label>
-                    <input id="confPass" type="password" name="confPassword" placeholder="Confirm Password" >
+                    <input id="confPass" type="password" name="confPassword" placeholder="Confirm Password" value="<%= values.confPassword %>">
                 </div>
                 <div class="login-form__passwordOpr">
                     <div>
