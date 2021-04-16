@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const {User, validateUser, getUserBlogs, getUserName} = require('../models/User');
 const Blog = require('../models/blog').Blog;
-const Comment = require('../models/comment').Comment;
+const {Comment, deleteComment} = require('../models/comment');
 const auth = require('../middlewares/auth');
 const validateInputs = require('../middlewares/validateInputs');
 const moment = require('moment');
@@ -56,7 +56,14 @@ router.post('/add', [auth, validateInputs],  asyncHandler(async (req, res, next)
 }));
 
 router.delete('/delete/:id',auth , asyncHandler(async (req,res, next)=>{
-    const blog = await Blog.findByIdAndDelete(req.params.id);
+    const blog = await Blog.findById(req.params.id);
+
+    for(comment of blog.comments){
+        console.log(comment);
+        await deleteComment(comment);
+    }
+    await blog.remove();
+    // const blog = await Blog.findByIdAndDelete(req.params.id);
 
     const user = await User.findById(req.session._id);
     
